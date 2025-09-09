@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  username  String   @unique
+  password  String
+  firstName String
+  lastName  String
+  role      Role     @default(STUDENT)
+  avatar    String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  courses   Course[]
+  enrollments Enrollment[]
+  reviews   Review[]
+
+  @@map("users")
+}
+
+model Course {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  thumbnail   String?
+  price       Float    @default(0)
+  instructor  String   @db.ObjectId
+  category    String
+  level       Level    @default(BEGINNER)
+  duration    Int      // in minutes
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  instructorRef User         @relation(fields: [instructor], references: [id])
+  enrollments   Enrollment[]
+  lessons       Lesson[]
+  reviews       Review[]
+
+  @@map("courses")
+}
+
+model Lesson {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  videoUrl    String?
+  duration    Int      // in minutes
+  order       Int
+  course      String   @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  courseRef Course @relation(fields: [course], references: [id], onDelete: Cascade)
+
+  @@map("lessons")
+}
+
+model Enrollment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      String   @db.ObjectId
+  course    String   @db.ObjectId
+  progress  Float    @default(0) // percentage
+  completed Boolean  @default(false)
+  enrolledAt DateTime @default(now())
+  completedAt DateTime?
+
+  // Relations
+  userRef   User   @relation(fields: [user], references: [id])
+  courseRef Course @relation(fields: [course], references: [id])
+
+  @@unique([user, course])
+  @@map("enrollments")
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      String   @db.ObjectId
+  course    String   @db.ObjectId
+  rating    Int      // 1-5 stars
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userRef   User   @relation(fields: [user], references: [id])
+  courseRef Course @relation(fields: [course], references: [id])
+
+  @@unique([user, course])
+  @@map("reviews")
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
