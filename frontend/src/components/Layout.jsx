@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import { Menu, X, BookOpen, User, LogOut } from 'lucide-react'
+import { Menu, X, BookOpen } from 'lucide-react'
 
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -113,48 +113,6 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t mt-16">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <BookOpen className="h-8 w-8 text-primary-600" />
-                <span className="text-xl font-bold text-gray-900">Edu Bloom Zone</span>
-              </div>
-              <p className="text-gray-600 max-w-md">
-                Platform pembelajaran online terdepan yang membantu Anda mengembangkan keterampilan dan pengetahuan dengan cara yang menyenangkan dan efektif.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-                Platform
-              </h3>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-gray-600 hover:text-primary-600">Beranda</Link></li>
-                <li><Link to="/about" className="text-gray-600 hover:text-primary-600">Tentang</Link></li>
-                <li><Link to="/contact" className="text-gray-600 hover:text-primary-600">Kontak</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
-                Dukungan
-              </h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-600 hover:text-primary-600">Bantuan</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-primary-600">FAQ</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-primary-600">Kebijakan Privasi</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <p className="text-center text-gray-600">
-              © 2024 Edu Bloom Zone. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

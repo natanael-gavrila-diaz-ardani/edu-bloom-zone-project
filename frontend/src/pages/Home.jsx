@@ -1,107 +1,191 @@
-import { Link } from 'react-router-dom'
-import { BookOpen, Users, Award, Play } from 'lucide-react'
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { BookOpen, Users, Award, MessageSquare, BarChart3, Upload } from 'lucide-react';
+import teacherImg from "../assets/image/hero-education.jpg" 
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate = useNavigate()
+
+  const handleTeacherClick = () => {
+    navigate('/login?role=teacher')
+  }
+
+  const handleStudentClick = () => {
+    navigate('/login?role=student')
+  }
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Belajar Tanpa Batas
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto">
-              Tingkatkan keterampilan Anda dengan ribuan kursus berkualitas tinggi dari instruktur berpengalaman
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/register"
-                className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-              >
-                Mulai Belajar Gratis
-              </Link>
-              <Link
-                to="/courses"
-                className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-              >
-                Jelajahi Kursus
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Mengapa Memilih Edu Bloom Zone?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Platform pembelajaran yang dirancang untuk memberikan pengalaman belajar terbaik
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <BookOpen className="h-8 w-8 text-primary-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Konten Berkualitas
-              </h3>
-              <p className="text-gray-600">
-                Akses ribuan kursus yang dibuat oleh instruktur berpengalaman dan ahli di bidangnya
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-8 w-8 text-primary-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Komunitas Aktif
-              </h3>
-              <p className="text-gray-600">
-                Bergabung dengan komunitas pembelajar yang saling mendukung dan berbagi pengetahuan
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Award className="h-8 w-8 text-primary-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Sertifikat Resmi
-              </h3>
-              <p className="text-gray-600">
-                Dapatkan sertifikat yang diakui industri setelah menyelesaikan kursus
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gray-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Siap Memulai Perjalanan Belajar Anda?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Bergabunglah dengan ribuan siswa yang telah merasakan manfaat pembelajaran di Edu Bloom Zone
+    <div className="min-h-screen">
+      <div className="min-h-screen flex bg-[#dcecf7]">
+        <div className="flex-1 flex flex-col justify-center px-20 py-12">
+          <h1 className="font-bold text-gray-800 mb-8 text-left text-6xl leading-tight">
+            <span className="block">Transform Learning</span>
+            <span className="block">
+              with{' '}
+              <span className="text-blue-600">EduConnect</span>
+            </span>
+          </h1>
+          
+          <p className="text-xl text-gray-700 mb-10 leading-relaxed text-left max-w-2xl">
+            The modern e-learning platform that connects teachers 
+            and students through interactive materials, real-time
+            collaboration, and gamified learning experiences.
           </p>
-          <Link
-            to="/register"
-            className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 inline-flex items-center"
-          >
-            <Play className="h-5 w-5 mr-2" />
-            Daftar Sekarang
-          </Link>
+          {/* cart pertama */}
+          <div className="mb-10">
+            <h2 className="text-xl font-semibold text-gray-800 mb-6 text-left">
+              Choose your role to get started:
+            </h2>
+            
+            <div className="flex gap-8 mb-8">
+              <div className="flex-1 bg-white border border-gray-300 rounded-xl shadow-md p-8 hover:border-blue-400 transition-colors cursor-pointer">
+                <BookOpen className="w-12 h-12 mx-auto text-gray-600 mb-4" />
+                <h3 className="font-bold text-xl mb-3 text-gray-900 text-center">Teacher</h3>
+                <p className="text-gray-600 text-base text-center">
+                  Create classrooms and manage learning materials.
+                </p>
+              </div>
+              
+              <div className="flex-1 bg-white border border-gray-300 rounded-xl shadow-md p-8 hover:border-blue-400 transition-colors cursor-pointer">
+                <Users className="w-12 h-12 mx-auto text-gray-600 mb-4" />
+                <h3 className="font-bold text-xl mb-3 text-gray-900 text-center">Student</h3>
+                <p className="text-gray-600 text-base text-center">
+                  Join classrooms and track your learning progress.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <button className="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold py-4 px-10 rounded-lg transition-colors text-lg">
+            Get Started as ...
+          </button>
         </div>
-      </section>
+        
+        <div className="flex-1 flex items-center justify-center relative animate-float">
+          <img
+            src={teacherImg}
+            alt="Teacher"
+            className="w-[800px] mr-[114px] h-auto object-contain rounded-[24px]"
+          />
+        </div>
+      </div>
+
+      {/* cart kedua */}
+      <div className="bg-gray-50 py-20 px-16">
+        <div className="max-w-full mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-800 mb-6">
+              Everything You Need for Modern Education
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Powerful features designed to enhance the learning experience for both 
+              teachers and students.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
+              <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
+                <BookOpen className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-4 text-left">
+                Interactive Learning Materials
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-left">
+                Upload and share images, PDFs, and videos for engaging education
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
+              <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-4 text-left">
+                Virtual Classrooms
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-left">
+                Create and join classrooms with unique codes for seamless collaboration
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
+              <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
+                <Award className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-4 text-left">
+                Gamification System
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-left">
+                Earn points, badges, and levels to motivate continuous learning
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
+              <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
+                <MessageSquare className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-4 text-left">
+                Real-time Chat
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-left">
+                Communicate instantly with teachers and fellow students
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
+              <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
+                <BarChart3 className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-4 text-left">
+                Progress Tracking
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-left">
+                Monitor learning progress with detailed analytics and insights
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
+              <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
+                <Upload className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-4 text-left">
+                Quiz System
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-left">
+                Create and take interactive quizzes to test knowledge
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-blue-600 py-20 px-16">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-4xl font-bold text-white mb-6">
+          Ready to Start Your Learning Journey?
+        </h2>
+        
+        <p className="text-xl text-white mb-10 leading-relaxed max-w-2xl mx-auto">
+          Join thousands of teachers and students already using EduConnect to enhance their educational experience.
+        </p>
+        
+        <div className="flex gap-6 justify-center">
+          <button 
+            onClick={handleTeacherClick}
+            className="bg-[#1b91f7] hover:text-blue-600 text-white font-semibold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors text-lg"
+          >
+            Start as Teacher
+          </button>
+          
+          <button 
+            onClick={handleStudentClick}
+            className="bg-[#1b91f7] text-white hover:text-blue-600 font-semibold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors text-lg"
+          >
+            Join as Student
+          </button>
+        </div>
+      </div>
+    </div>
     </div>
   )
 }
