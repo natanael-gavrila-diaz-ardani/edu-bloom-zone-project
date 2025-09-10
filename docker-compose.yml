@@ -71,6 +71,9 @@ services:
       VITE_API_URL: http://localhost:5000
     depends_on:
       - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     networks:
       - edu-bloom-network
 
