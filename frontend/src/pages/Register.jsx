@@ -119,10 +119,10 @@ const Register = () => {
         </div>
 
         <div className="bg-blue-50 rounded-2xl p-6">
-          <h3 className="text-lg font-bold text-gray-800 mb-3">
+          <h3 className="text-lg font-bold text-gray-800 mb-3 text-center">
             {role === 'teacher' ? 'Teacher Benefits' : 'Student Benefits'}
           </h3>
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed text-center">
             {role === 'teacher' 
               ? 'Create unlimited classrooms, upload materials, track student progress, and engage with your students in real-time.'
               : 'Join classrooms, access learning materials, track your progress, and collaborate with teachers and fellow students.'

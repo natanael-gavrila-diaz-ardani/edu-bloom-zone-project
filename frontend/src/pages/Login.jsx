@@ -14,6 +14,10 @@ const Login = () => {
     navigate(`/register?role=${role}`)
   }
 
+  const handleLogin = () => {
+    navigate('/teacher')
+  }
+
   return (
     <div className="min-h-screen py-12 px-4">
       <div className="max-w-md mx-auto">
@@ -80,7 +84,9 @@ const Login = () => {
             </div>
           </div>
 
-          <button className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors mb-4">
+          <button className="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors mb-4"
+          onClick={handleLogin}
+          >
             Sign In
           </button>
 
@@ -94,10 +100,10 @@ const Login = () => {
         </div>
 
         <div className="bg-blue-50 rounded-2xl p-6">
-          <h3 className="text-lg font-bold text-gray-800 mb-3">
+          <h3 className="text-lg font-bold text-gray-800 mb-3 text-center">
             {role === 'teacher' ? 'Teacher Benefits' : 'Student Benefits'}
           </h3>
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed text-center">
             {role === 'teacher' 
               ? 'Create unlimited classrooms, upload materials, track student progress, and engage with your students in real-time.'
               : 'Join classrooms, access learning materials, track your progress, and collaborate with teachers and fellow students.'

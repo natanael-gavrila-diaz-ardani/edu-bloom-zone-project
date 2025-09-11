@@ -22,7 +22,7 @@ const Home = () => {
             <span className="block">Transform Learning</span>
             <span className="block">
               with{' '}
-              <span className="text-blue-600">EduConnect</span>
+              <span className="text-blue-600">Edu Bloom Zone</span>
             </span>
           </h1>
           
