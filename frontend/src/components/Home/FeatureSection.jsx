@@ -1,4 +1,5 @@
 import { BookOpen, Users, Award, MessageSquare, BarChart3, Upload } from 'lucide-react';
+import Card from '../ui/Card';
 
 const FeatureSection = () => {
     return (
@@ -15,6 +16,39 @@ const FeatureSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <Card 
+                        icon={<BookOpen className="w-8 h-8 text-white" />}
+                        title="Interactive Learning Materials"
+                        description="Upload and share images, PDFs, and videos for engaging ducation"
+                    />
+                    <Card
+                        icon={<Users className="w-8 h-8 text-white" />}
+                        title="Virtual Classrooms"
+                        description="Create and join classrooms with unique codes for seamless collaboration"
+                    />
+                    <Card
+                        icon={<Award className="w-8 h-8 text-white" />}
+                        title="Gamification System"
+                        description="Earn points, badges, and levels to motivate continuous learning"
+                    />
+                    <Card 
+                        icon={<MessageSquare className="w-8 h-8 text-white"/>}
+                        title="Real-time Chat"
+                        description="Communicate instantly with teachers and fellow students"
+                    />
+                    <Card
+                        icon={<BarChart3 className="w-8 h-8 text-white" />}
+                        title="Progress Tracking"
+                        description="Monitor learning progress with detailed analytics and insights"
+                    />
+                    <Card
+                        icon={<Upload className="w-8 h-8 text-white" />}
+                        title="Quiz System"
+                        description="Create and take interactive quizzes to test knowledge"
+                    />
+                </div>
+
+                {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
                         <div className="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
                             <BookOpen className="w-8 h-8 text-white" />
@@ -86,7 +120,7 @@ const FeatureSection = () => {
                             Create and take interactive quizzes to test knowledge
                         </p>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
