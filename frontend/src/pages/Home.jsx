@@ -4,10 +4,12 @@ import CallToAction from "../components/Home/CallToAction";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <HeroSection />
+      
       <FeatureSection />
+
       <CallToAction />
-    </div>
+    </>
   );
 }

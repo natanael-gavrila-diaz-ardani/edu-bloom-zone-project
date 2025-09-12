@@ -5,7 +5,7 @@ const Card = ({
     icon,
     title,
     description,
-    iconBg = "bg-blue-500",
+    iconBg = "bg-blue-500 md:w-16 md:h-16 w-11 h-11",
     className = "",
     onClick
 }) => {
@@ -22,11 +22,11 @@ const Card = ({
                 </div>
             )}
 
-            <h3 className="text-xl font-bold text-gray-800 mb-4 text-left">
+            <h3 className="md:text-xl text-base font-bold text-gray-800 mb-4 text-left">
                 {title}
             </h3>
 
-            <p className="text-gray-600 leading-relaxed text-left">
+            <p className="text-gray-600 md:text-base text-sm leading-relaxed text-left">
                 {description}
             </p>
 
@@ -37,10 +37,10 @@ const Card = ({
 }
 
 Card.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     icon: PropTypes.node,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
     iconBg: PropTypes.string,
     className: PropTypes.string,
     onClick: PropTypes.func

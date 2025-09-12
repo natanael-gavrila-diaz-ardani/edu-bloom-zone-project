@@ -15,19 +15,20 @@ const CallToAction = () => {
     return (
         <div className="bg-blue-600 py-20 px-16">
             <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-4xl font-bold text-white mb-6">
+                <h2 className="md:text-4xl text-xl font-bold text-white mb-6">
                 Ready to Start Your Learning Journey?
                 </h2>
                 
-                <p className="text-xl text-white mb-10 leading-relaxed max-w-2xl mx-auto">
+                <p className="md:text-xl text-sm text-white mb-10 leading-relaxed max-w-2xl mx-auto">
                 Join thousands of teachers and students already using EduConnect to enhance their educational experience.
                 </p>
                 
-                <div className="flex gap-6 justify-center">
+                <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
                 <Button 
                     onClick={handleTeacherClick}
                     variant="primary"
-                    size="md"
+                    size="sm"
+                    className="w-full md:w-auto"
                 >
                     Start as Teacher
                 </Button>
@@ -35,7 +36,8 @@ const CallToAction = () => {
                 <Button 
                     onClick={handleStudentClick}
                     variant="primary"
-                    size="md"
+                    size="sm"
+                    className="w-full md:w-auto"
                 >
                     Join as Student
                 </Button>
