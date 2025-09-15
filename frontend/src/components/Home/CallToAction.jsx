@@ -13,7 +13,7 @@ const CallToAction = () => {
     }
     
     return (
-        <div className="bg-blue-600 py-20 px-16">
+        <div className="bg-blue-600 py-10 md:py-20 px-4 md:px-16">
             <div className="max-w-4xl mx-auto text-center">
                 <h2 className="md:text-4xl text-xl font-bold text-white mb-6">
                 Ready to Start Your Learning Journey?
