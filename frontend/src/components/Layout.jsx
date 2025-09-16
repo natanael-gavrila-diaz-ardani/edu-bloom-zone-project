@@ -25,8 +25,8 @@ const Layout = () => {
             <div className="flex justify-between h-16">
               <div className="flex items-center">
                 <Link to="/" className="flex flex-col items-start">
-                  <h1 className="text-xl font-bold text-[#0f87ff]">Edu Bloom Zone</h1>
-                  <span className="text-sm text-gray-500">Teacher Dashboard</span>
+                  <h1 className="text-2xl font-bold text-[#0f87ff]">Edu Bloom Zone</h1>
+                  <span className="text-base text-gray-500">Teacher Dashboard</span>
                 </Link>
               </div>
 

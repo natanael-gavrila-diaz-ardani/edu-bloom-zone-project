@@ -1,7 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import { BookOpen, Users } from 'lucide-react';
 import teacherImg from "../../assets/image/hero-education.jpg" 
+import Card from '../ui/Card';
+import Button from '../ui/Button';
+import { HeroSectionData } from '../../Data/Home/HeroSection';
 
 const HeroSection = () => {
   return (
@@ -21,34 +23,28 @@ const HeroSection = () => {
             and students through interactive materials, real-time
             collaboration, and gamified learning experiences.
           </p>
-          {/* cart pertama */}
           <div className="mb-10">
             <h2 className="md:text-2xl text-sm font-semibold text-gray-800 mb-6 text-left">
               Choose your role to get started:
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div className="flex-1 bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
-                <BookOpen className="md:w-12 md:h-12 w-9 h-9 mx-auto text-gray-600 mb-4" />
-                <h3 className="font-bold md:text-xl text-sm mb-3 text-gray-900 text-center">Teacher</h3>
-                <p className="text-gray-600 md:text-base text-sm text-center">
-                  Create classrooms and manage learning materials.
-                </p>
-              </div>
-              
-              <div className="flex-1 bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1">
-                <Users className="md:w-12 md:h-12 w-9 h-9 mx-auto text-gray-600 mb-4" />
-                <h3 className="font-bold md:text-xl text-sm mb-3 text-gray-900 text-center">Student</h3>
-                <p className="text-gray-600 md:text-base text-sm text-center">
-                  Join classrooms and track your learning progress.
-                </p>
-              </div>
+              {HeroSectionData.map((heroa) => {
+                return (
+                  <Card 
+                  key={heroa.id} 
+                  icon={heroa.icon} 
+                  title={heroa.title} 
+                  description={heroa.description} 
+                />
+                )
+              })}
             </div>
           </div>
           
-          <button className="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold md:py-4 md:px-10 py-2 px-3 rounded-lg transition-colors md:text-lg text-sm mb-8">
+          <Button className="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white hover:text-white font-semibold md:py-4 md:px-10 py-2 px-3 rounded-lg transition-colors md:text-lg text-sm mb-8">
             Get Started as ...
-          </button>
+          </Button>
 
           <div className="lg:hidden">
             <img
