@@ -18,6 +18,7 @@ const Card = ({
   onCopyCode,
   stats = [],
   actions = [],
+  progress,
 }) => {
   const baseClasses = "rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200"
   
@@ -46,6 +47,11 @@ const Card = ({
           {subtitle && <p className="text-sm text-gray-600">{subtitle}</p>}
         </div>
         <div className="flex items-center space-x-2">
+          {progress !== undefined && (
+            <div className="border text-[10px] rounded-full bg-[#E3F5F0] px-2 py-1 font-bold">
+              {progress}% completed
+            </div>
+          )}
           {code && <span className="text-sm text-gray-600">Code: {code}</span>}
           {onCopyCode && (
             <button onClick={onCopyCode} className="text-blue-600 hover:text-blue-800">
@@ -141,7 +147,8 @@ Card.propTypes = {
   code: PropTypes.string,
   onCopyCode: PropTypes.func,
   stats: PropTypes.array,
-  actions: PropTypes.array
+  actions: PropTypes.array,
+  progress: PropTypes.number
 }
 
 export default Card
