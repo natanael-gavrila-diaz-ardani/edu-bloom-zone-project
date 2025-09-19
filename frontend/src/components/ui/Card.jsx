@@ -12,7 +12,7 @@ const Card = ({
   value,
   valueColor = "text-blue-600",
   bgColor = "bg-blue-50",
-  variant = "default", 
+  variant = "default",
   subtitle = "",
   code = "",
   onCopyCode,
@@ -21,7 +21,7 @@ const Card = ({
   progress,
 }) => {
   const baseClasses = "rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200"
-  
+
   const variants = {
     default: `${baseClasses} bg-white cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1`,
     kpi: `${baseClasses} ${bgColor} border-0`,
@@ -32,8 +32,8 @@ const Card = ({
   const renderKPI = () => (
     <div className="flex justify-between items-start">
       <div>
-        <p className="text-gray-600 text-sm font-medium mb-2">{title}</p>
-        <p className={`text-3xl font-bold ${valueColor}`}>{value}</p>
+        <p className="text-gray-500 text-sm font-medium mb-2">{title}</p>
+        <p className={`text-2xl font-bold ${valueColor}`}>{value}</p>
       </div>
       {icon && <div>{icon}</div>}
     </div>
@@ -49,7 +49,7 @@ const Card = ({
         <div className="flex items-center space-x-2">
           {progress !== undefined && (
             <div className="border text-[10px] rounded-full bg-[#E3F5F0] px-2 py-1 font-bold">
-              {progress}% completed
+              {progress}% Complete
             </div>
           )}
           {code && <span className="text-sm text-gray-600">Code: {code}</span>}
@@ -78,11 +78,10 @@ const Card = ({
             <button
               key={i}
               onClick={action.onClick}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                action.variant === "outline"
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${action.variant === "outline"
                   ? "border border-gray-300 text-gray-700 hover:bg-gray-50"
                   : "bg-green-600 text-white hover:bg-green-700"
-              }`}
+                }`}
             >
               <div className="flex items-center space-x-1">
                 {action.icon}
@@ -98,7 +97,10 @@ const Card = ({
 
   const renderSidebar = () => (
     <>
-      <h3 className="text-lg font-bold text-gray-900 mb-4">{title}</h3>
+      <div className="flex items-center gap-2 mb-4">
+        {icon && <span>{icon}</span>}
+        <h3 className="text-lg font-bold text-gray-900">{title}</h3>
+      </div>
       {children}
     </>
   )

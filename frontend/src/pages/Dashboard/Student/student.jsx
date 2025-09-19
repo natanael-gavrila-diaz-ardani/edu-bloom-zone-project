@@ -1,43 +1,49 @@
 import { BookOpen, Clock, Trophy, Award, Plus, Play, MessageSquare, Star, CheckCircle, Zap } from "lucide-react"
+import DashboardStudent from "../../../components/Student/Card/DashboardStudent"
+import ClassroomStudent from "../../../components/Student/Card/ClassroomStudent"
 import Button from '../../../components/ui/Button'
 import Card from '../../../components/ui/Card'
+import TargetIcon from "../../../assets/icons/target.png"
+import TrophyIcon from "../../../assets/icons/trophy.png"
+import FireIcon from "../../../assets/icons/fire.png"
+import WizardIcon from "../../../assets/icons/wizard.png"
 
 const StudentDashboard = () => {
   const cards = [
     {
       title: "Joined Classrooms",
       value: "2",
-      color: "#12BF86",
+      color: "text-[#1BC75A]",
       gradient: "bg-gradient-to-r from-[#E6F2FF] to-[#F2FBF8]",
-      icon: <BookOpen className="h-8 w-8 text-blue-600 mt-4" />,
+      icon: <BookOpen className="h-8 w-8 text-[#1BC75A] mt-4" />,
     },
     {
       title: "Overall Progress",
       value: "60%",
-      color: "#51A2FF",
+      color: "text-[#0080FF]",
       gradient: "bg-gradient-to-r from-[#E6F2FF] to-[#F2FBF8]",
-      icon: <Clock className="h-8 w-8 text-green-600 mt-4" />,
+      icon: <Clock className="h-8 w-8 text-[#0080FF] mt-4" />,
     },
     {
       title: "Total Points",
       value: "200",
-      color: "#12BF86",
+      color: "text-[#1BC75A]",
       gradient: "bg-gradient-to-r from-[#E6F2FF] to-[#F2FBF8]",
-      icon: <Trophy className="h-8 w-8 text-green-600 mt-4" />,
+      icon: <Trophy className="h-8 w-8 text-[#1BC75A] mt-4" />,
     },
     {
       title: "Achievements",
       value: "2/4",
-      color: "#FAA832",
+      color: "text-[#FAA832]",
       gradient: "bg-gradient-to-r from-[#FFF7EB] to-[#FFFAF4]",
-      icon: <Award className="h-8 w-8 text-orange-600 mt-4" />,
+      icon: <Award className="h-8 w-8 text-[#FAA833] mt-4" />,
     },
   ]
 
   const classroom = [
     {
       title: "Mathematics Grade 10",
-      teacher: "Ms.Johson",
+      teacher: "Teacher: Ms.Johson",
       progress: 75,
       materialsIsDone: 6,
       materialsIsTotal: 8,
@@ -45,7 +51,7 @@ const StudentDashboard = () => {
     },
     {
       title: "Physics Grade 11",
-      teacher: "Ms.Smith",
+      teacher: "Teacher: Ms.Smith",
       progress: 40,
       materialsIsDone: 4,
       materialsIsTotal: 10,
@@ -58,7 +64,7 @@ const StudentDashboard = () => {
       title: "First Steps",
       description: "Completed your first lesson",
       date: "Earned 2 days ago",
-      icon: <Star className="w-4 h-4"></Star>,
+      icon: <img src={TargetIcon} alt="Target" className="w-6 h-6" />,
       statusIcon: <CheckCircle className="w-3 h-3"></CheckCircle>,
       completed: true,
     },
@@ -66,7 +72,7 @@ const StudentDashboard = () => {
       title: "Quiz Master",
       description: "Scored 100% on 3 quizzes",
       date: "Earned 1 week ago",
-      icon: <Trophy className="w-4 h-4"></Trophy>,
+      icon: <img src={TrophyIcon} alt="Target" className="w-6 h-6" />,
       statusIcon: <CheckCircle className="w-3 h-3"></CheckCircle>,
       completed: true,
     },
@@ -74,7 +80,7 @@ const StudentDashboard = () => {
       title: "Consistent Learning",
       description: "Study for 7 days in a row",
       date: "Earned 2 days ago",
-      icon: <BookOpen className="w-4 h-4 text-gray-400"></BookOpen>,
+      icon: <img src={FireIcon} alt="Target" className="w-6 h-6" />,
       statusIcon: "logo",
       completed: false,
     },
@@ -82,7 +88,7 @@ const StudentDashboard = () => {
       title: "Math Wizard",
       description: "Complete all math materials",
       date: "Earned 2 days ago",
-      icon: <Zap className="w-4 h-4 text-gray-400"></Zap>,
+      icon: <img src={WizardIcon} alt="Target" className="w-6 h-6" />,
       statusIcon: "logo",
       completed: false,
     }
@@ -92,106 +98,52 @@ const StudentDashboard = () => {
     {
       title: "First Steps",
       description: "Completed your first lesson",
-      icon: "w-2 h-2 bg-green-500"
+      icon: "w-2 h-2 bg-green-500 rounded-full"
     },
     {
       title: "Quiz Master",
       description: "Scored 100% on 3 quizzes",
-      icon: "w-2 h-2 bg-blue-500"
+      icon: "w-2 h-2 bg-blue-500 rounded-full"
     },
     {
       title: "Consistent Learning",
       description: "Study for 7 days in a row",
-      icon: "w-2 h-2 bg-orange-500"
+      icon: "w-2 h-2 bg-orange-500 rounded-full"
     }
   ]
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="py-6 px-4 mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {cards.map((card, index) => {
-            return (
-              <Card
-                key={index}
-                variant="kpi"
-                title={card.title}
-                value={card.value}
-                valueColor={card.color}
-                bgColor={card.gradient}
-                icon={card.icon}
-              />
-            )
-          })}
-        </div>
+        <DashboardStudent cards={cards} />
 
-        <div className="flex gap-8">
-          <div className="w-3/5">
+        <div className="grid grid-cols-12 gap-8">
+          <div className="col-span-12 lg:col-span-7">
             <div className="flex justify-between py-8">
-              <span className="font-bold text-2xl">My Classrooms</span>
+              <span className="font-bold text-xl px-4 lg:px-2">My Classrooms</span>
               <Button size="sm" variant="green" className="text-xs flex items-center gap-2 text-white transition-colors">
-                <Plus className="w-3 h-3"></Plus>
+                <Plus className="w-4 h-4"></Plus>
                 <span>Join Classroom</span>
               </Button>
             </div>
 
-            <div className="grid gap-6">
-              {classroom.map((cls, index) => (
-                <Card
-                  key={index}
-                  variant="classroom"
-                  title={cls.title}
-                  subtitle={cls.teacher}
-                  progress={cls.progress}
-                >
-                  <div className="py-4">
-                    <div className="flex justify-between mb-1">
-                      <span className="text-xs">Progress</span>
-                      <span className="text-xs">{cls.materialsIsDone}/{cls.materialsIsTotal} materials</span>
-                    </div>
-                    <div className="w-full h-2 flex overflow-hidden">
-                      <div className="bg-blue-500 rounded-l-full" style={{ width: `${cls.progress}%` }}></div>
-                      <div className="bg-green-500 rounded-r-full" style={{ width: `${100 - cls.progress}%` }}></div>
-                    </div>
-                    <div className="p-4 mt-4 bg-[#FDF6EA] rounded-lg">
-                      <div className="flex justify-between items-center">
-                        <span className="flex items-center gap-2 text-xs font-semibold">
-                          <Play className="w-3 h-3 text-orange-500"></Play>
-                          <span>Next Quiz: {cls.quiz}</span>
-                        </span>
-                        <Button size="sm" variant="orange">Start Quiz</Button>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 py-3">
-                      <Button size="sm" variant="outline" className="flex items-center gap-2">
-                        <BookOpen className="w-3 h-3"></BookOpen>
-                        <span className="text-xs">View Materials</span>
-                      </Button>
-                      <Button size="sm" variant="green" className="flex items-center gap-2">
-                        <MessageSquare className="w-3 h-3"></MessageSquare>
-                        <span className="text-xs">Chat</span>
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
+            <ClassroomStudent classroom={classroom} />
 
           </div>
 
-          <div className="grid gap-6 w-2/5 mt-8">
-            <Card variant="sidebar" title="Achievements">
+          <div className="col-span-12 lg:col-span-5 space-y-6 mt-8">
+            <Card variant="sidebar" icon={<Award className="w-5 h-5" />} title="Achievements">
               {achieve.map((ach, index) => (
                 <div key={index} className={`mt-3 w-full rounded-lg p-4 ${ach.completed
                   ? "border border-green-200"
                   : "bg-gray-100"
                   }`}>
                   <div className="flex justify-between">
-                    <div className="flex items-center gap-3">
+                    <div className={`flex items-center gap-3 ${ach.completed ? "" : "opacity-50"}`}>
                       {ach.icon}
                       <div className="grid grid-cols-1">
-                        <span className="text-xs font-semibold">{ach.title}</span>
-                        <span className="text-xs text-gray-500">{ach.description}</span>
+                        <span className={`text-xs font-semibold ${ach.completed ? "text-black" : "text-[#8e9094]"}`}>{ach.title}</span>
+                        <span className={`text-xs text-gray-500 ${ach.completed ? "text-black" : "text-[#b1b5bd]"}`}>{ach.description}</span>
                         <span className="text-xs text-[#10B77F]">{ach.completed ? ach.date : ""}</span>
                       </div>
                     </div>
