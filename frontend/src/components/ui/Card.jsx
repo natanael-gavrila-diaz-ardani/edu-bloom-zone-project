@@ -110,7 +110,6 @@ const Card = ({
     </>
   )
 
-  // Content mapping
   const content = {
     kpi: renderKPI,
     classroom: renderClassroom,

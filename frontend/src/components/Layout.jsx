@@ -1,9 +1,21 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import { Menu, X, LogIn, MessageSquare, Settings } from 'lucide-react'
+import { Menu, X, LogIn, MessageSquare, Settings, Bell, User } from 'lucide-react'
+import Modal from './Modal/Modal'
+import Input from './ui/FromInput/Input'
+import Tab from './ui/tab'
+import Button from './ui/Button'
 
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState('profile')
+  const [notificationSettings, setNotificationSettings] = useState({
+    emailNotifications: true,
+    pushNotifications: true,
+    assignmentReminders: true,
+    studentMessages: true
+  })
   const location = useLocation()
 
   // Halaman yang tidak perlu navbar
@@ -12,13 +24,240 @@ const Layout = () => {
 
   const navigation = [
     { name: 'Messages', href: '/', current: location.pathname === '/', icon: MessageSquare },
-    { name: 'Settings', href: '/', current: location.pathname === '/', icon: Settings },
+    { name: 'Settings', href: '#', current: location.pathname === '/', icon: Settings, onClick: () => setIsSettingsOpen(true) },
     { name: 'Logout', href: '/', current: location.pathname === '/', icon: LogIn },
   ]
 
+  const handleNotificationToggle = (setting) => {
+    setNotificationSettings(prev => ({
+      ...prev,
+      [setting]: !prev[setting]
+    }))
+  }
+
+  const renderProfileTab = () => (
+    <div className="space-y-6">
+      <div className="flex items-center space-x-2">
+        <User className="w-5 h-5 text-gray-600" />
+        <h3 className="text-lg font-semibold text-gray-900">Profile Information</h3>
+      </div>
+
+      {/* Avatar Section */}
+      <div className="flex items-center space-x-4">
+        <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center">
+          <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <button className="flex items-center bg-gray-50 space-x-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+          </svg>
+          <span>Change Avatar</span>
+        </button>
+      </div>
+
+      {/* Form Fields */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+          <Input
+            type="text" 
+            placeholder="Enter your full name"
+            className="w-full px-3 py-2 border bg-gray-50 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+          <Input 
+            type="email" 
+            placeholder="Enter your email"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+        <textarea 
+          rows={4}
+          placeholder="Tell students about yourself"
+          className="w-full px-3 bg-gray-50 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+        />
+      </div>
+
+      {/* Save Button */}
+      <div className="flex justify-end">
+        <button
+          onClick={() => {
+            console.log("Profile saved")
+            setIsSettingsOpen(false)
+          }}
+          className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Save Profile
+        </button>
+      </div>
+    </div>
+  )
+
+  const renderNotificationsTab = () => (
+    <div className="space-y-6">
+      <div className="flex items-center space-x-2">
+        <Bell className="w-5 h-5 text-gray-600" />
+        <h3 className="text-lg font-semibold text-gray-900">Notification Preferences</h3>
+      </div>
+
+      <div className="space-y-4">
+        {/* Email Notifications */}
+        <div className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg">
+          <div className="flex-1">
+            <h4 className="text-sm font-medium text-gray-900">Email Notifications</h4>
+            <p className="text-sm text-gray-500">Receive updates via email</p>
+          </div>
+          <button
+            onClick={() => handleNotificationToggle('emailNotifications')}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              notificationSettings.emailNotifications ? 'bg-blue-600' : 'bg-gray-200'
+            }`}
+          >
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                notificationSettings.emailNotifications ? 'translate-x-6' : 'translate-x-1'
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Push Notifications */}
+        <div className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg">
+          <div className="flex-1">
+            <h4 className="text-sm font-medium text-gray-900">Push Notifications</h4>
+            <p className="text-sm text-gray-500">Receive browser notifications</p>
+          </div>
+          <button
+            onClick={() => handleNotificationToggle('pushNotifications')}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              notificationSettings.pushNotifications ? 'bg-blue-600' : 'bg-gray-200'
+            }`}
+          >
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                notificationSettings.pushNotifications ? 'translate-x-6' : 'translate-x-1'
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Assignment Reminders */}
+        <div className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg">
+          <div className="flex-1">
+            <h4 className="text-sm font-medium text-gray-900">Assignment Reminders</h4>
+            <p className="text-sm text-gray-500">Get notified about upcoming assignments</p>
+          </div>
+          <button
+            onClick={() => handleNotificationToggle('assignmentReminders')}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              notificationSettings.assignmentReminders ? 'bg-blue-600' : 'bg-gray-200'
+            }`}
+          >
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                notificationSettings.assignmentReminders ? 'translate-x-6' : 'translate-x-1'
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Student Messages */}
+        <div className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg">
+          <div className="flex-1">
+            <h4 className="text-sm font-medium text-gray-900">Student Messages</h4>
+            <p className="text-sm text-gray-500">Notify when students send messages</p>
+          </div>
+          <button
+            onClick={() => handleNotificationToggle('studentMessages')}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              notificationSettings.studentMessages ? 'bg-blue-600' : 'bg-gray-200'
+            }`}
+          >
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                notificationSettings.studentMessages ? 'translate-x-6' : 'translate-x-1'
+              }`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* Save Button */}
+      <div className="flex justify-end">
+        <button
+          onClick={() => {
+            console.log("Notification settings saved", notificationSettings)
+            setIsSettingsOpen(false)
+          }}
+          className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Save Notification Settings
+        </button>
+      </div>
+    </div>
+  )
+
+  const renderSecurityTab = () => (
+    <div className="space-y-6">
+      <div className="flex items-center space-x-2">
+      <Lock className="w-5 h-5 text-gray-600" />
+        <h3 className="text-lg font-semibold text-gray-900">Security Settings</h3>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+          <Input
+            type="password" 
+            placeholder="Enter current password"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+          <Input
+            type="password" 
+            placeholder="Enter new password"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+          <Input
+            type="password" 
+            placeholder="Confirm new password"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          onClick={() => {
+            console.log("Security settings saved")
+            setIsSettingsOpen(false)
+          }}
+          className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Update Password
+        </button>
+      </div>
+    </div>
+  )
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation - Hanya tampil di halaman tertentu */}
       {shouldShowNavbar && (
         <nav className="sticky top-0 z-50 bg-white shadow-sm border-b">
           <div className="max-w-8xl mx-auto px-8 md:px-12 lg:px-16">
@@ -38,6 +277,7 @@ const Layout = () => {
                     <Link
                       key={item.name}
                       to={item.href}
+                      onClick={item.onClick}
                       className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         item.current
                           ? 'text-primary-600 bg-primary-50'
@@ -95,6 +335,45 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
+
+      <Modal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        title="Teacher Settings"
+        Icon={<Settings className="w-6 h-6 mr-1 text-gray-700" />}
+      >
+        <div className="space-y-6">
+          <div className="border-b border-gray-200 pb-6">
+            <nav className="-mb-px flex space-x-2">
+              <Tab 
+                isActive={activeTab === 'profile'}
+                onClick={() => setActiveTab('profile')}
+                variant="Button"
+              >
+                Profile
+              </Tab>
+              <Tab 
+                isActive={activeTab === 'notifications'}
+                onClick={() => setActiveTab('notifications')}
+                variant="Button"
+              >
+                Notifications
+              </Tab>
+              <Tab 
+                isActive={activeTab === 'security'}
+                onClick={() => setActiveTab('security')}
+                variant="Button"
+              >
+                Security
+              </Tab>
+            </nav>
+          </div>
+          
+          {activeTab === 'profile' && renderProfileTab()}
+          {activeTab === 'notifications' && renderNotificationsTab()}
+          {activeTab === 'security' && renderSecurityTab()}
+        </div>
+      </Modal>
     </div>
   )
 }
