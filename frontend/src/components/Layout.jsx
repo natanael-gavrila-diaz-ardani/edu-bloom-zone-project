@@ -1,10 +1,10 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import { Menu, X, LogIn, MessageSquare, Settings, Bell, User } from 'lucide-react'
+import { Menu, X, LogIn, MessageSquare, Settings, Bell, User, Lock, Mail } from 'lucide-react'
 import Modal from './Modal/Modal'
 import Input from './ui/FromInput/Input'
 import Tab from './ui/tab'
-import Button from './ui/Button'
+import { useForm } from 'react-hook-form'
 
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -18,7 +18,20 @@ const Layout = () => {
   })
   const location = useLocation()
 
-  // Halaman yang tidak perlu navbar
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm() 
+
+  const fullName = watch('fullName')
+  const email = watch('email')
+  const bio = watch('bio')
+  const currentPassword = watch('currentPassword')
+  const newPassword = watch('newPassword')
+  const confirmNewPassword = watch('confirmNewPassword')
+
   const hideNavbarPaths = ['/', '/login', '/register']
   const shouldShowNavbar = !hideNavbarPaths.includes(location.pathname)
 
@@ -63,8 +76,11 @@ const Layout = () => {
           <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
           <Input
             type="text" 
+            value={fullName}
+            icon={<User className="w-5 h-5 text-gray-400" />}
             placeholder="Enter your full name"
             className="w-full px-3 py-2 border bg-gray-50 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            {...register('fullName', { required: 'Full name must be filled in' })}
           />
         </div>
         
@@ -72,8 +88,11 @@ const Layout = () => {
           <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
           <Input 
             type="email" 
+            value={email}
+            icon={<Mail className="w-5 h-5 text-gray-400" />}
             placeholder="Enter your email"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            {...register('email', { required: 'Email must be filled in' })}
           />
         </div>
       </div>
@@ -82,8 +101,10 @@ const Layout = () => {
         <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
         <textarea 
           rows={4}
+          value={bio}
           placeholder="Tell students about yourself"
           className="w-full px-3 bg-gray-50 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          {...register('bio', { required: 'Bio wajib diisi' })}
         />
       </div>
 
@@ -218,8 +239,11 @@ const Layout = () => {
           <label className="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
           <Input
             type="password" 
+            value={currentPassword}
+            icon={<Lock className="w-5 h-5 text-gray-400" />}
             placeholder="Enter current password"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            {...register('currentPassword', { required: 'Current password must be filled in' })}
           />
         </div>
         
@@ -227,8 +251,11 @@ const Layout = () => {
           <label className="block text-sm font-medium text-gray-700 mb-2">New Password</label>
           <Input
             type="password" 
+            value={newPassword}
+            icon={<Lock className="w-5 h-5 text-gray-400" />}
             placeholder="Enter new password"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            {...register('newPassword', { required: 'A new password must be entered.' })}
           />
         </div>
         
@@ -236,8 +263,11 @@ const Layout = () => {
           <label className="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
           <Input
             type="password" 
+            value={confirmNewPassword}
+            icon={<Lock className="w-5 h-5 text-gray-400" />}
             placeholder="Confirm new password"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            {...register('confirmNewPassword', { required: 'Confirm new password must be filled in' })}
           />
         </div>
       </div>
