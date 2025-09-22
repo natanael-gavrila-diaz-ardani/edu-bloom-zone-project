@@ -15,9 +15,10 @@ const Button = ({
     secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
     outline: "border border-blue-500 text-blue-500 hover:bg-blue-50 hover:text-blue-600",
     social: "w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-white transition-colors",
-    green: "bg-[#10B77F] hover:bg-green-600 text-white hover:text-white",
+    green: "bg-[#10B77F] hover:bg-green-500 text-white hover:text-white",
     orange: "bg-[#FAA52E] hover:bg-orange-400",
     gray: "border bg-[#f9fafb] hover:bg-gray-200 text-gray-800 hover:text-gray-900",
+    orangeOutline: "border bg-[#ECF7F0] hover:bg-orange-400 transition-colors"
   }
 
   const Sizes = {

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BookOpen, Clock, Trophy, Award, Plus, Play, MessageSquare, Star, CheckCircle, Zap } from "lucide-react"
 import DashboardStudent from "../../../components/Student/Card/DashboardStudent"
 import ClassroomStudent from "../../../components/Student/Card/ClassroomStudent"
@@ -9,6 +10,8 @@ import FireIcon from "../../../assets/icons/fire.png"
 import WizardIcon from "../../../assets/icons/wizard.png"
 
 const StudentDashboard = () => {
+  const [showForm, setShowForm] = useState(false);
+
   const cards = [
     {
       title: "Joined Classrooms",
@@ -41,22 +44,22 @@ const StudentDashboard = () => {
   ]
 
   const classroom = [
-    {
-      title: "Mathematics Grade 10",
-      teacher: "Teacher: Ms.Johson",
-      progress: 75,
-      materialsIsDone: 6,
-      materialsIsTotal: 8,
-      quiz: "Algebra Quiz #3",
-    },
-    {
-      title: "Physics Grade 11",
-      teacher: "Teacher: Ms.Smith",
-      progress: 40,
-      materialsIsDone: 4,
-      materialsIsTotal: 10,
-      quiz: "Kinematics Quiz #1",
-    }
+    // {
+    //   title: "Mathematics Grade 10",
+    //   teacher: "Teacher: Ms.Johson",
+    //   progress: 75,
+    //   materialsIsDone: 6,
+    //   materialsIsTotal: 8,
+    //   quiz: "Algebra Quiz #3",
+    // },
+    // {
+    //   title: "Physics Grade 11",
+    //   teacher: "Teacher: Ms.Smith",
+    //   progress: 40,
+    //   materialsIsDone: 4,
+    //   materialsIsTotal: 10,
+    //   quiz: "Kinematics Quiz #1",
+    // }
   ]
 
   const achieve = [
@@ -114,36 +117,62 @@ const StudentDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="py-6 px-4 mx-auto max-w-7xl">
+      <div className="py-6 max-w-7xl mx-auto">
         <DashboardStudent cards={cards} />
 
         <div className="grid grid-cols-12 gap-8">
-          <div className="col-span-12 lg:col-span-7">
-            <div className="flex justify-between py-8">
-              <span className="font-bold text-xl px-4 lg:px-2">My Classrooms</span>
-              <Button size="sm" variant="green" className="text-xs flex items-center gap-2 text-white transition-colors">
+          <div className="col-span-12 lg:col-span-8">
+            <div className="flex justify-between py-6 mt-3">
+              <span className="font-medium text-xl px-4 lg:px-2">My Classrooms</span>
+              <Button
+                size="sm"
+                variant="green"
+                className="text-xs flex items-center gap-2 text-white transition-colors"
+                onClick={() => setShowForm(true)}
+              >
                 <Plus className="w-4 h-4"></Plus>
                 <span>Join Classroom</span>
               </Button>
             </div>
 
+            {showForm && (
+              <div className="p-6 bg-white rounded-xl shadow-md border mb-10">
+                <div className="mb-4">
+                  <h2 className="text-2xl font-semibold">Join a Classroom</h2>
+                  <span className='text-xs text-[#687183]'>Enter the classroom code provided by your teacher</span>
+                </div>
+                <form>
+                  <label htmlFor="text" className='text-sm font-semibold'>Classroom code</label>
+                  <input
+                    type="text"
+                    placeholder="E.G., MTH101"
+                    className="w-full px-3 py-2 border rounded-md mb-3"
+                  />
+                  <div className="flex gap-3">
+                    <Button variant='green' size='sm'>Join Classroom</Button>
+                    <Button size='sm' variant='orangeOutline' onClick={() => setShowForm(false)}>Cancel</Button>
+                  </div>
+                </form>
+              </div>
+            )}
+
             <ClassroomStudent classroom={classroom} />
 
           </div>
 
-          <div className="col-span-12 lg:col-span-5 space-y-6 mt-8">
+          <div className="col-span-12 lg:col-span-4 space-y-6 mt-9">
             <Card variant="sidebar" icon={<Award className="w-5 h-5" />} title="Achievements">
               {achieve.map((ach, index) => (
                 <div key={index} className={`mt-3 w-full rounded-lg p-4 ${ach.completed
                   ? "border border-green-200"
-                  : "bg-gray-100"
+                  : "bg-[#FBFBFC]"
                   }`}>
                   <div className="flex justify-between">
                     <div className={`flex items-center gap-3 ${ach.completed ? "" : "opacity-50"}`}>
                       {ach.icon}
                       <div className="grid grid-cols-1">
-                        <span className={`text-xs font-semibold ${ach.completed ? "text-black" : "text-[#8e9094]"}`}>{ach.title}</span>
-                        <span className={`text-xs text-gray-500 ${ach.completed ? "text-black" : "text-[#b1b5bd]"}`}>{ach.description}</span>
+                        <span className={`text-xs font-semibold ${ach.completed ? "text-black" : "text-[#7A7C80]"}`}>{ach.title}</span>
+                        <span className={`text-xs text-gray-500 ${ach.completed ? "text-black" : "text-[#A7ACB5]"}`}>{ach.description}</span>
                         <span className="text-xs text-[#10B77F]">{ach.completed ? ach.date : ""}</span>
                       </div>
                     </div>

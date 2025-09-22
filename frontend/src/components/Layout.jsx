@@ -34,7 +34,7 @@ const Layout = ({ points }) => {
       {/* Navigation - Hanya tampil di halaman tertentu */}
       {shouldShowNavbar && (
         <nav className="sticky top-0 z-50 bg-white shadow-sm border-b">
-          <div className="max-w-7xl mx-auto px-10 md:px-12 lg:px-8">
+          <div className="max-w-7xl mx-auto px-10 md:px-12 lg:px-0">
             <div className="flex justify-between h-20">
               <div className="flex items-center">
                 <Link to="/" className="flex flex-col items-start">
