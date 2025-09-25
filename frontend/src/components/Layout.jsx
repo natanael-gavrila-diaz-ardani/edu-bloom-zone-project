@@ -75,7 +75,7 @@ const Layout = () => {
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
           <Input
-            type="text" 
+            type="text"
             value={fullName}
             icon={<User className="w-5 h-5 text-gray-400" />}
             placeholder="Enter your full name"
@@ -83,11 +83,11 @@ const Layout = () => {
             {...register('fullName', { required: 'Full name must be filled in' })}
           />
         </div>
-        
+
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-          <Input 
-            type="email" 
+          <Input
+            type="email"
             value={email}
             icon={<Mail className="w-5 h-5 text-gray-400" />}
             placeholder="Enter your email"
@@ -96,10 +96,10 @@ const Layout = () => {
           />
         </div>
       </div>
-      
+
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
-        <textarea 
+        <textarea
           rows={4}
           value={bio}
           placeholder="Tell students about yourself"
@@ -109,7 +109,7 @@ const Layout = () => {
       </div>
 
       {/* Save Button */}
-      <div className="flex justify-end">
+      <div className="flex justify-start">
         <button
           onClick={() => {
             console.log("Profile saved")
@@ -272,7 +272,7 @@ const Layout = () => {
         </div>
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-start">
         <button
           onClick={() => {
             console.log("Security settings saved")
@@ -372,36 +372,41 @@ const Layout = () => {
         title="Teacher Settings"
         Icon={<Settings className="w-6 h-6 mr-1 text-gray-700" />}
       >
-        <div className="space-y-6">
-          <div className="border-b border-gray-200 pb-6">
-            <nav className="-mb-px flex space-x-2">
-              <Tab 
+        <div className="space-y-2">
+          <div className="bg-gray-100 rounded-md p-1">
+            <nav className="-mb-px grid grid-cols-3 space-x-2 items-center">
+              <Tab
                 isActive={activeTab === 'profile'}
                 onClick={() => setActiveTab('profile')}
-                variant="Button"
+                variant="buttonSet"
+                size='md'
               >
                 Profile
               </Tab>
-              <Tab 
+              <Tab
                 isActive={activeTab === 'notifications'}
                 onClick={() => setActiveTab('notifications')}
-                variant="Button"
+                variant="buttonSet"
+                size='md'
               >
                 Notifications
               </Tab>
-              <Tab 
+              <Tab
                 isActive={activeTab === 'security'}
                 onClick={() => setActiveTab('security')}
-                variant="Button"
+                variant="buttonSet"
+                size='md'
               >
                 Security
               </Tab>
             </nav>
           </div>
-          
-          {activeTab === 'profile' && renderProfileTab()}
-          {activeTab === 'notifications' && renderNotificationsTab()}
-          {activeTab === 'security' && renderSecurityTab()}
+
+          <div className="bg-white border rounded-lg p-5">
+            {activeTab === 'profile' && renderProfileTab()}
+            {activeTab === 'notifications' && renderNotificationsTab()}
+            {activeTab === 'security' && renderSecurityTab()}
+          </div>
         </div>
       </Modal>
     </div>

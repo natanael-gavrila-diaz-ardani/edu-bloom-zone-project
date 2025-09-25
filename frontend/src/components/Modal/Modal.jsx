@@ -12,9 +12,9 @@ const Modal = ({ isOpen, onClose, children, title, Icon }) => {
       />
       
       {/* Modal Content */}
-      <div className="relative bg-white rounded-lg shadow-xl w-full max-w-xl">
+      <div className="relative bg-[#f9fafb] rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-4">
           <div className="flex items-center space-x-2">
             {Icon && (
               <div className="text-blue-600">
