@@ -20,11 +20,11 @@ const Card = ({
   actions = [],
   progress,
 }) => {
-  const baseClasses = "rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200"
+  const baseClasses = "rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200"
 
   const variants = {
     default: `${baseClasses} bg-white cursor-pointer hover:scale-105 active:scale-95 active:-translate-y-1`,
-    kpi: `${baseClasses} ${bgColor} border-0`,
+    kpi: `${baseClasses} ${bgColor}`,
     classroom: `${baseClasses} bg-white`,
     sidebar: `${baseClasses} bg-white`
   }

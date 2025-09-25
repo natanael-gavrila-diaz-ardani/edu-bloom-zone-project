@@ -8,7 +8,7 @@ const Button = ({
   onClick,
   disabled = false
 }) => {
-  const baseClasses = "font-semibold rounded-lg transition-colors"
+  const baseClasses = "font-semibold rounded-md transition-colors"
 
   const Variants = {
     primary: "bg-[#1b91f7] text-white hover:bg-blue-100 hover:text-blue-600",
@@ -22,7 +22,7 @@ const Button = ({
   }
 
   const Sizes = {
-    xs: "py-2 px-3 text-xs",
+    xs: "py-[11px] px-[16px] text-xs",
     sm: "py-3 px-5 text-sm",
     md: "py-4 px-8 text-lg",
     lg: "py-6 px-12 text-xl"

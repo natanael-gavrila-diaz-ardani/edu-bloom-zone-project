@@ -15,14 +15,14 @@ const StudentDashboard = () => {
   const cards = [
     {
       title: "Joined Classrooms",
-      value: "2",
+      value: "0",
       color: "text-[#1BC75A]",
       gradient: "bg-gradient-to-r from-[#E6F2FF] to-[#F2FBF8]",
       icon: <BookOpen className="h-8 w-8 text-[#1BC75A] mt-4" />,
     },
     {
       title: "Overall Progress",
-      value: "60%",
+      value: "NaN%",
       color: "text-[#0080FF]",
       gradient: "bg-gradient-to-r from-[#E6F2FF] to-[#F2FBF8]",
       icon: <Clock className="h-8 w-8 text-[#0080FF] mt-4" />,
@@ -67,7 +67,7 @@ const StudentDashboard = () => {
       title: "First Steps",
       description: "Completed your first lesson",
       date: "Earned 2 days ago",
-      icon: <img src={TargetIcon} alt="Target" className="w-6 h-6" />,
+      icon: <img src={TargetIcon} alt="Target" className="w-8 h-8" />,
       statusIcon: <CheckCircle className="w-3 h-3"></CheckCircle>,
       completed: true,
     },
@@ -75,7 +75,7 @@ const StudentDashboard = () => {
       title: "Quiz Master",
       description: "Scored 100% on 3 quizzes",
       date: "Earned 1 week ago",
-      icon: <img src={TrophyIcon} alt="Target" className="w-6 h-6" />,
+      icon: <img src={TrophyIcon} alt="Target" className="w-8 h-8" />,
       statusIcon: <CheckCircle className="w-3 h-3"></CheckCircle>,
       completed: true,
     },
@@ -83,7 +83,7 @@ const StudentDashboard = () => {
       title: "Consistent Learning",
       description: "Study for 7 days in a row",
       date: "Earned 2 days ago",
-      icon: <img src={FireIcon} alt="Target" className="w-6 h-6" />,
+      icon: <img src={FireIcon} alt="Target" className="w-8 h-8" />,
       statusIcon: "logo",
       completed: false,
     },
@@ -91,7 +91,7 @@ const StudentDashboard = () => {
       title: "Math Wizard",
       description: "Complete all math materials",
       date: "Earned 2 days ago",
-      icon: <img src={WizardIcon} alt="Target" className="w-6 h-6" />,
+      icon: <img src={WizardIcon} alt="Target" className="w-8 h-8" />,
       statusIcon: "logo",
       completed: false,
     }
@@ -117,13 +117,13 @@ const StudentDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="py-6 max-w-7xl mx-auto">
+      <div className="py-6 max-w-8xl mx-auto px-10 lg:px-4">
         <DashboardStudent cards={cards} />
 
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 lg:col-span-8">
             <div className="flex justify-between py-6 mt-3">
-              <span className="font-medium text-xl px-4 lg:px-2">My Classrooms</span>
+              <span className="font-medium text-xl px-4 lg:px-0">My Classrooms</span>
               <Button
                 size="sm"
                 variant="green"
@@ -136,21 +136,21 @@ const StudentDashboard = () => {
             </div>
 
             {showForm && (
-              <div className="p-6 bg-white rounded-xl shadow-md border mb-10">
+              <div className="p-6 bg-white rounded-xl shadow-md border mb-6">
                 <div className="mb-4">
                   <h2 className="text-2xl font-semibold">Join a Classroom</h2>
                   <span className='text-xs text-[#687183]'>Enter the classroom code provided by your teacher</span>
                 </div>
                 <form>
-                  <label htmlFor="text" className='text-sm font-semibold'>Classroom code</label>
+                  <label htmlFor="text" className='text-sm font-semibold'>Classroom Code</label>
                   <input
                     type="text"
                     placeholder="E.G., MTH101"
-                    className="w-full px-3 py-2 border rounded-md mb-3"
+                    className="w-full px-3 py-2 border rounded-md mb-4 mt-2 placeholder:text-sm placeholder:text-gray-600"
                   />
                   <div className="flex gap-3">
-                    <Button variant='green' size='sm'>Join Classroom</Button>
-                    <Button size='sm' variant='orangeOutline' onClick={() => setShowForm(false)}>Cancel</Button>
+                    <Button variant='green' size='xs'>Join Classroom</Button>
+                    <Button size='xs' variant='orangeOutline' onClick={() => setShowForm(false)}>Cancel</Button>
                   </div>
                 </form>
               </div>

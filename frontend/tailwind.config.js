@@ -44,6 +44,9 @@ export default {
       animation: {
         float: 'float 3s ease-in-out infinite',
       },
+      maxWidth: {
+        '8xl': '90rem',
+      },
     },
   },
   plugins: [],
